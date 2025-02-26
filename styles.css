@@ -10,7 +10,20 @@
     --red-dot: #ff5f57;
     --yellow-dot: #ffbd2e;
     --green-dot: #28ca41;
+    --gray-dark: #1a1a1a;
+    --gray-medium: #333333;
+    --gray-light: #888888;
+    --glass-bg: rgba(30, 30, 30, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --transition-slow: 0.5s ease;
+    --transition-medium: 0.3s ease;
+    --transition-fast: 0.2s ease;
 }
+
+.right-content  {
+    margin-left: 16rem; /* Espacio entre iconos */
+  }
 
 * {
     margin: 0;
@@ -18,12 +31,16 @@
     box-sizing: border-box;
 }
 
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
     line-height: 1.6;
+    position: relative;
 }
+
 
 .container {
     max-width: 1000px;
@@ -31,14 +48,142 @@ body {
     padding: 2rem;
 }
 
-a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
+/* Hero Section */
+.hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    border-top: 1px solid var(--border-color);
 }
 
-a:hover {
-    color: var(--accent-light);
+.hero-content {
+    width: 50%;
+    padding-right: 2rem;
+}
+
+.subtitle {
+    color: var(--gray-light);
+    margin-top: 0.5rem;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    max-width: 90%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.cta-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.hero-visual {
+    width: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purple-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, rgba(138, 43, 226, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.glass-card {
+    width: 100%;
+    max-width: 450px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    transition: transform var(--transition-medium);
+}
+
+.glass-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.glass-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--gray-light);
+}
+
+.glass-dots span:first-child {
+    background-color: #ff5f57;
+}
+
+.glass-dots span:nth-child(2) {
+    background-color: #ffbd2e;
+}
+
+.glass-dots span:nth-child(3) {
+    background-color: #28ca41;
+}
+
+.glass-title {
+    margin-left: 15px;
+    font-size: 0.9rem;
+    color: var(--gray-light);
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.skill-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    transition: all var(--transition-fast);
+}
+
+.skill-tag:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 /* Typography */
@@ -75,6 +220,16 @@ p {
     color: var(--text-secondary);
     font-size: 0.9rem;
     margin: 0.8rem 0;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-light);
 }
 
 .highlight {
@@ -413,26 +568,3 @@ footer p {
     }
 }
 
-section {
-    animation: fadeIn 0.8s ease forwards;
-}
-
-section:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-section:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-section:nth-child(4) {
-    animation-delay: 0.3s;
-}
-
-section:nth-child(5) {
-    animation-delay: 0.4s;
-}
-
-section:nth-child(6) {
-    animation-delay: 0.5s;
-}

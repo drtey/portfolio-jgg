@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javier Garcia | Data Engineer</title>
+    <link rel="icon" id="invertir" type="image/svg+xml" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,64 +14,65 @@
 <body>
     <div class="container">
         <header>
-            <div class="profile">
-                <div class="profile-image">
-                    <img src="https://via.placeholder.com/80" alt="Javier Garcia" class="avatar">
-                </div>
-                <div class="social-icons">
+            <div class="intro">
+                <h1><span class="highlight">Javier Garcia</span> | Data Engineer <span class="right-content">
                     <a href="https://github.com/drtey" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://linkedin.com/in/javi-gg" target="_blank"><i class="fab fa-linkedin"></i></a>
                     <a href="mailto:javiggv99@gmail.com"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-            <div class="intro">
-                <h1>Soy <span class="highlight">Javier Garcia</span>, Data Engineer especializado en Data Pipelines y Machine Learning.</h1>
+                  </span></h1>
             </div>
         </header>
 
         <main>
-            <section id="tech-stack">
-                <div class="section-header">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Main Stack</span>
+            <section id="home" class="hero-section">
+                <div class="hero-content">
+                    <p class="intro-text reveal-text delay-2">I'm a proactive, self-taught professional with strong expertise in <span class="highlight">data engineering</span> and <span class="highlight">software development</span>, currently specializing in <span class="highlight">medical image computing</span> and <span class="highlight">machine learning</span>.</p>
+                    <div class="cta-container reveal-up delay-3">
+                        <a href="#projects" class="cta-button">View My Work</a>
                     </div>
                 </div>
-                <div class="stack-card">
-                    <div class="stack-grid">
-                        <span class="stack-item">Python</span>
-                        <span class="stack-item">Scala</span>
-                        <span class="stack-item">SQL</span>
-                        <span class="stack-item">PySpark</span>
-                        <span class="stack-item">Pandas</span>
-                        <span class="stack-item">Numpy</span>
-                        <span class="stack-item">Spark</span>
-                        <span class="stack-item active">Jupyter</span>
-                        <span class="stack-item">Linux</span>
-                        <span class="stack-item">Git</span>
-                        <span class="stack-item">Jenkins</span>
-                        <span class="stack-item">AWS</span>
-                        <span class="stack-item">Snowflake</span>
-                        <span class="stack-item">MongoDB</span>
-                        <span class="stack-item">Kafka</span>
-                        <span class="stack-item">PyTorch</span>
-                        <span class="stack-item">Scikit-Learn</span>
-                        <span class="stack-item">OpenCV</span>
-                        <span class="stack-item">Docker</span>
-                        <span class="stack-item">FastAPI</span>
-                        <span class="stack-item">LangChain</span>
-                        <span class="stack-item">Hugging Face</span>
+                <div class="hero-visual">
+                    <div class="glass-card floating">
+                        <div class="glass-header">
+                            <div class="glass-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="glass-title">Main Stack</div>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Scala</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">PySpark</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">Numpy</span>
+                            <span class="skill-tag">Spark</span>
+                            <span class="skill-tag">Jupyter</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Snowflake</span>
+                            <span class="skill-tag">MongoDb</span>
+                            <span class="skill-tag">Kafka</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">Scikit-Learn</span>
+                            <span class="skill-tag">OpenCV</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">FastAPI</span>
+                            <span class="skill-tag">LangChain</span>
+                            <span class="skill-tag">Hugging Face</span>
+                        </div>
                     </div>
+                    <div class="purple-glow"></div>
                 </div>
             </section>
 
             <section id="proyectos">
                 <div class="section-header">
-                    <h2>PROYECTOS</h2>
+                    <h2>PROJECTS</h2>
                 </div>
                 <div class="projects-grid">
                     <div class="project-card">
@@ -83,7 +85,7 @@
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
-                        <p>Convolutional neural network model para clasificación de imágenes CT de pulmones.</p>
+                        <p>Convolutional neural network model for classifying CT scan images to assist healthcare workers in diagnosis.</p>
                         <div class="project-tags">
                             <span>Python</span>
                             <span>PyTorch</span>
@@ -102,7 +104,7 @@
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
-                        <p>Solución ETL basada en AWS para automatizar el procesamiento de datos y flujos de trabajo analíticos.</p>
+                        <p>AWS-based ETL solution for automating data processing and analytics workflows.</p>
                         <div class="project-tags">
                             <span>AWS</span>
                             <span>Lambda</span>
@@ -121,7 +123,7 @@
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
-                        <p>Plataforma web para análisis de imágenes médicas utilizando técnicas de deep learning.</p>
+                        <p>Web-based platform for medical image analysis using deep learning techniques.</p>
                         <div class="project-tags">
                             <span>PyTorch</span>
                             <span>React</span>
@@ -153,7 +155,7 @@
 
             <section id="experiencia">
                 <div class="section-header">
-                    <h2>EXPERIENCIA</h2>
+                    <h2>EXPERIENCE</h2>
                 </div>
                 <div class="timeline">
                     <div class="timeline-entry">
@@ -163,12 +165,14 @@
                         <div class="timeline-content">
                             <h3>Data Engineer</h3>
                             <h4>Logicalis - External Data Engineer at Atresmedia</h4>
-                            <span class="timeline-date">Presente - Mar 2024</span>
-                            <p>Desarrollo y mantenimiento de la plataforma ETL en AWS, utilizando Scala y Spark para procesamiento de datos y particionado para optimizar rendimiento y escalabilidad.</p>
+                            <span class="timeline-date">Present - Mar 2024</span>
+                            <p>Perform new development, evolutionary, and corrective maintenance of the ETL platform in AWS, utilizing Scala and Spark for data processing and partitioning to optimize performance and scalability.</p>
                             <ul>
-                                <li>Diseño e implementación de procesos Batch usando Lambda</li>
-                                <li>Desarrollo de funciones Lambda para automatizar procesos de login y extracción de datos</li>
-                                <li>Trabajo con modelos de recomendación ML en AWS</li>
+                                <li>Perform maintenance of the ETL platform in AWS using Scala and Spark</li>
+                                <li>Design batch processes with Lambda for efficient data ingestion</li>
+                                <li>Develop and deploy Lambda functions to automate the login and data retrieval processes from various social media platforms, including TikTok Ads Business, Meta Ads Business, and Google Ads</li>
+                                <li>Ingest and parse requests and responses from a machine learning recommendation model hosted on AWS, capturing model scores via logs</li>
+                                <li>Optimize data pipelines between AWS services and Snowflake</li>
                             </ul>
                         </div>
                     </div>
@@ -181,7 +185,7 @@
                             <h3>Data Engineer</h3>
                             <h4>Nubika Cloud Solutions</h4>
                             <span class="timeline-date">Mar 2024 - Nov 2022</span>
-                            <p>Desarrollo de datasets y dataflows en Salesforce Einstein Analytics. Construcción de data warehouse y data lake usando MuleSoft en Amazon S3 y Redshift.</p>
+                            <p>Building datasets, and dataflows on Salesforce Einstein Analytics. Building data warehouse and data lake using MuleSoft on Amazon S3 and Amazon Redshift services.</p>
                         </div>
                     </div>
                     
@@ -193,7 +197,9 @@
                             <h3>Software Developer</h3>
                             <h4>Sisytec Networks</h4>
                             <span class="timeline-date">Nov 2022 - Sep 2021</span>
-                            <p>Desarrollo de APIs con autenticación JWT e interfaces de usuario para entornos web utilizando PHP, Node.js, Angular, jQuery, CSS y SQL.</p>
+                            <p>Development of APIs with JWT authentication</p>
+                            <p>Building user interfaces for web environments</p>
+                            <p>Working with PHP, Node.js, Angular, jQuery, and SQL</p>
                         </div>
                     </div>
                 </div>
@@ -201,7 +207,7 @@
 
             <section id="educacion">
                 <div class="section-header">
-                    <h2>EDUCACIÓN</h2>
+                    <h2>EDUCATION</h2>
                 </div>
                 <div class="education-grid">
                     <div class="education-card">
@@ -224,7 +230,7 @@
 
             <section id="certificaciones">
                 <div class="section-header">
-                    <h2>CERTIFICACIONES</h2>
+                    <h2>CERTIFICATION</h2>
                 </div>
                 <div class="certifications-grid">
                     <div class="certification-card">
@@ -247,15 +253,14 @@
                 </div>
             </section>
 
-<!-- La sección de contacto se ha eliminado ya que está integrada en el header con los iconos sociales -->
-
         </main>
 
         <footer>
-            <p>&copy; 2024 Javier Garcia Garcia. Todos los derechos reservados.</p>
+            <a href="https://www.flaticon.com/free-icons/minimal" title="minimal icons">Minimal icons created by rashadabdulov - Flaticon</a>
         </footer>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
