@@ -111,8 +111,8 @@ function initAnimations() {
     revealElements.forEach(elem => {
         ScrollTrigger.create({
             trigger: elem,
-            start: 'top 85%',
-            end: 'bottom 15%',
+            start: 'top 95%',
+            end: 'bottom 5%',
             onEnter: () => elem.classList.add('active')
         });
     });
@@ -140,26 +140,6 @@ function initAnimations() {
         });
     }
     
-    // Project cards hover effect
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            gsap.to(card, {
-                y: -10,
-                duration: 0.3,
-                boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
-            });
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-                y: 0,
-                duration: 0.3,
-                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)'
-            });
-        });
-    });
-    
     // Skill tags random animation
     const skillTags = document.querySelectorAll('.skill-tag');
     skillTags.forEach(tag => {
@@ -185,7 +165,7 @@ function initAnimations() {
         // Initial random animation
         gsap.to(tag, {
             y: '-=5',
-            duration: 1 + Math.random(),
+            duration: 2 + Math.random(),
             repeat: -1,
             yoyo: true,
             ease: 'sine.inOut',
