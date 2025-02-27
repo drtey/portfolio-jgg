@@ -164,7 +164,7 @@ function initAnimations() {
         
         // Initial random animation
         gsap.to(tag, {
-            y: '-=5',
+            y: '-=3',
             duration: 2 + Math.random(),
             repeat: -1,
             yoyo: true,
