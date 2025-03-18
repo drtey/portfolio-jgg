@@ -1,135 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javier García | Data Engineer & ML Specialist</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Javier García | Data Engineer</title>
+   <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="terminal-button close"></span>
-                <span class="terminal-button minimize"></span>
-                <span class="terminal-button maximize"></span>
-            </div>
-            <div class="terminal-title">javier@garcia:~</div>
-        </div>
-        <div class="terminal-content">
-            <div class="terminal-line">
-                <span class="prompt">javier@garcia:~$</span> <span class="command">whoami</span>
-            </div>
-            <div class="terminal-line output">
-                <pre class="ascii-art">
-     _             _                ____                _       
-    (_) __ ___   _(_) ___ _ __    / ___|__ _ _ __ ___ (_) __ _ 
-    | |/ _` \ \ / / |/ _ \ '__|  | |   / _` | '__/ __|| |/ _` |
-    | | (_| |\ V /| |  __/ |     | |__| (_| | | | (__ | | (_| |
-   _/ |\__,_| \_/ |_|\___|_|      \____\__,_|_|  \___||_|\__,_|
-  |__/                                                          
-                </pre>
-            </div>
-            <div class="terminal-line">
-                <span class="prompt">javier@garcia:~$</span> <span class="command">data engineer with machine learning experience|</span>
-            </div>
-            <div class="terminal-line">
-                <span class="prompt">javier@garcia:~$</span> <span class="command">cd projects</span>
-            </div>
-            <div class="terminal-line">
-                <span class="prompt">javier@garcia:~/projects$</span> <span class="command">ls</span>
-            </div>
-            <div class="terminal-line output">
-                <span class="file">chest-ct-scan.py</span>
-                <span class="file">etl-platform.scala</span>
-                <span class="file">salesforce-analytics.sql</span>
-                <span class="file">api-jwt.js</span>
-            </div>
-            <div class="terminal-line">
-                <span class="prompt">javier@garcia:~/projects$</span> <span class="command">cat about.txt</span>
-            </div>
-            <div class="terminal-line output">
-                Proactive data engineer specializing in ETL pipelines, data warehousing, and medical image computing. Python, Scala, AWS, PyTorch.
-            </div>
-            <div class="terminal-line">
-                <span class="prompt">javier@garcia:~/projects$</span> <span class="command">help</span>
-            </div>
-            <div class="terminal-line output">
-                Available commands:
-                - <a href="index.html" class="command-link">home</a>
-                - <a href="projects.html" class="command-link">projects</a>
-                - <a href="about.html" class="command-link">about</a>
-                - <a href="javascript:void(0);" class="command-link" id="contact-cmd">contact</a>
-            </div>
-            <div id="contact-info" class="terminal-line output hidden">
-                Email: contact@javiergarcia.dev
-                GitHub: <a href="https://github.com/" target="_blank" class="command-link">github.com/javiergarcia</a>
-            </div>
-            <div class="terminal-line input-line">
-                <span class="prompt">javier@garcia:~/projects$</span>
-                <span class="input" id="terminal-input" contenteditable="true"></span><span class="cursor"></span>
-            </div>
-        </div>
-    </div>
+   <header>
+       <div class="container">
+           <div class="logo">
+               <a href="index.html">javier.garcia</a>
+           </div>
+           <nav>
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="projects.html">Projects</a></li>
+                   <li><a href="assets/JavierGarcia_CV.pdf">CV</a></li>
+               </ul>
+           </nav>
+       </div>
+   </header>
+   
+   <main>
+       <div class="container">
+           <section class="profile">
+               <div class="profile-content">
+                   <h1>Hi, I'm Javier Garcia!</h1>
+                   
+                   <p>I'm a data engineer and software developer with a passion for all things related to 
+                   <span class="highlight">data engineering</span> and <span class="highlight">machine learning</span>.</p>
+                   
+                   <p>My expertise includes ETL pipelines, data warehousing, and medical image computing. 
+                   Since 2021 my interests have progressively shifted to applications that combine 
+                   <span class="highlight">cloud services</span> and <span class="highlight">data processing</span>.</p>
+                   
+                   <p>This site collects personal projects and references to topics that focus on data engineering.
+                   Whether you're a fellow developer, a researcher, or just someone curious about these subjects,
+                   I hope you'll find something of interest here.</p>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const input = document.getElementById('terminal-input');
-            const contactCmd = document.getElementById('contact-cmd');
-            const contactInfo = document.getElementById('contact-info');
-            
-            // Focus the input when the page loads
-            input.focus();
-            
-            // Make the cursor blink
-            setInterval(function() {
-                const cursor = document.querySelector('.cursor');
-                cursor.style.opacity = (cursor.style.opacity === '0') ? '1' : '0';
-            }, 500);
-            
-            // Handle input
-            input.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const command = input.textContent.trim().toLowerCase();
-                    
-                    // Handle navigation
-                    if (command === 'home') {
-                        window.location.href = 'index.html';
-                    } else if (command === 'projects') {
-                        window.location.href = 'projects.html';
-                    } else if (command === 'about') {
-                        window.location.href = 'about.html';
-                    } else if (command === 'contact') {
-                        contactInfo.classList.toggle('hidden');
-                    } else if (command === 'clear') {
-                        // Clear all output lines except for the input line
-                        const outputLines = document.querySelectorAll('.output');
-                        outputLines.forEach(line => line.classList.add('hidden'));
-                    } else if (command === 'help') {
-                        // Leave as is, the help text is already visible
-                    }
-                    
-                    // Clear the input
-                    input.textContent = '';
-                }
-            });
-            
-            // Focus the input when clicking anywhere on the terminal
-            document.querySelector('.terminal-content').addEventListener('click', function() {
-                input.focus();
-            });
-            
-            // Handle contact command link
-            contactCmd.addEventListener('click', function(e) {
-                e.preventDefault();
-                contactInfo.classList.toggle('hidden');
-            });
-        });
-    </script>
+               </div>
+               
+               <div class="profile-image">
+                   <img src="profile-image.jpg" alt="Javier García">
+               </div>
+           </section>
+       </div>
+   </main>
+   
+   <footer>
+       <div class="container">
+           <div class="copyright">
+               <p>&copy; 2025 Javier García</p>
+           </div>
+           <div class="links">
+               <a href="mailto:javiggv99@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+               <a href="https://github.com/drtey" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+               <a href="https://linkedin.com/in/javi-gg" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+           </div>
+       </div>
+   </footer>
 </body>
 </html>
