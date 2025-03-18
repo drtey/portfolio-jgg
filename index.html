@@ -1,269 +1,135 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javier Garcia | Data Engineer</title>
-    <link rel="icon" id="invertir" type="image/svg+xml" href="favicon.ico">
+    <title>Javier García | Data Engineer & ML Specialist</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="intro">
-                <h1><span class="highlight2">Javier Garcia</span> | Data Engineer <span class="right-content">
-                    <a class="shadow-icon" href="https://github.com/drtey" target="_blank"><i class="fab fa-github"></i></a>
-                    <a class="shadow-icon" href="https://linkedin.com/in/javi-gg" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a class="shadow-icon" href="mailto:javiggv99@gmail.com"><i class="fas fa-envelope"></i></a>
-                  </span></h1>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="terminal-button close"></span>
+                <span class="terminal-button minimize"></span>
+                <span class="terminal-button maximize"></span>
             </div>
-        </header>
-
-        <main>
-            <section id="home" class="hero-section">
-                <div class="hero-content">
-                    <p class="intro-text reveal-text delay-2">I'm a proactive, self-taught professional with strong expertise in <span class="highlight">data engineering</span> and <span class="highlight">software development</span>, currently specializing in <span class="highlight">medical image computing</span> and <span class="highlight">machine learning</span>.</p>
-                    <div class="cta-container reveal-up delay-3">
-                        <a href="#projects" class="cta-button">View My Work</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="glass-card floating">
-                        <div class="glass-header">
-                            <div class="glass-dots">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div class="glass-title">Main Stack</div>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Scala</span>
-                            <span class="skill-tag">SQL</span>
-                            <span class="skill-tag">PySpark</span>
-                            <span class="skill-tag">Pandas</span>
-                            <span class="skill-tag">Numpy</span>
-                            <span class="skill-tag">Spark</span>
-                            <span class="skill-tag">Jupyter</span>
-                            <span class="skill-tag">Linux</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Jenkins</span>
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Snowflake</span>
-                            <span class="skill-tag">MongoDb</span>
-                            <span class="skill-tag">Kafka</span>
-                            <span class="skill-tag">PyTorch</span>
-                            <span class="skill-tag">Scikit-Learn</span>
-                            <span class="skill-tag">OpenCV</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">FastAPI</span>
-                            <span class="skill-tag">LangChain</span>
-                            <span class="skill-tag">Hugging Face</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="proyectos">
-                <div class="section-header">
-                    <h2>PROJECTS</h2>
-                </div>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <a href="https://github.com/drtey/chest-CT-Scan" class="project-card-link" target="_blank"></a>
-                        <div class="project-header">
-                            <div class="project-title">
-                                <i class="fas fa-rocket"></i>
-                                <h3>Chest CT Scan Analysis</h3>
-                            </div>
-                            <a href="https://github.com/drtey" class="github-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                        <p>Convolutional neural network model for classifying CT scan images to assist healthcare workers in diagnosis.</p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>PyTorch</span>
-                            <span>OpenCV</span>
-                            <span>ResNet-50</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <a href="#" class="project-card-link"></a>
-                        <div class="project-header">
-                            <div class="project-title">
-                                <i class="fas fa-database"></i>
-                                <h3>Data Pipeline Automation</h3>
-                            </div>
-                            <a href="#" class="github-link disabled">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                        <p>AWS-based ETL solution for automating data processing and analytics workflows.</p>
-                        <div class="project-tags">
-                            <span>AWS</span>
-                            <span>Lambda</span>
-                            <span>Step Functions</span>
-                            <span>S3</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <a href="https://github.com/drtey/Brain-Tumor-MRI" class="project-card-link" target="_blank"></a>
-                        <div class="project-header">
-                            <div class="project-title">
-                                <i class="fas fa-brain"></i>
-                                <h3>Medical Imaging Platform</h3>
-                            </div>
-                            <a href="#" class="github-link disabled">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                        <p>Web-based platform for medical image analysis using deep learning techniques.</p>
-                        <div class="project-tags">
-                            <span>PyTorch</span>
-                            <span>React</span>
-                            <span>Flask</span>
-                            <span>Docker</span>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <a href="https://github.com/drtey" class="project-card-link" target="_blank"></a>
-                        <div class="project-header">
-                            <div class="project-title">
-                                <i class="fas fa-code"></i>
-                                <h3>Portfolio Website</h3>
-                            </div>
-                            <a href="https://github.com/drtey" class="github-link" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                        <p>Código fuente de este portfolio minimalista con efectos de glass morphism y animaciones.</p>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>GSAP</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="experiencia">
-                <div class="section-header">
-                    <h2>EXPERIENCE</h2>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-entry">
-                        <div class="timeline-point">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Data Engineer</h3>
-                            <h4>Logicalis - External Data Engineer at Atresmedia</h4>
-                            <span class="timeline-date">Mar 2024 - Present</span>
-                            <p>Perform new development, evolutionary, and corrective maintenance of the ETL platform in AWS, utilizing Scala and Spark for data processing and partitioning to optimize performance and scalability.</p>
-                            <ul>
-                                <li>Perform maintenance of the ETL platform in AWS using Scala and Spark</li>
-                                <li>Design batch processes with Lambda for efficient data ingestion</li>
-                                <li>Develop and deploy Lambda functions to automate the login and data retrieval processes from various social media platforms, including TikTok Ads Business, Meta Ads Business, and Google Ads</li>
-                                <li>Ingest and parse requests and responses from a machine learning recommendation model hosted on AWS, capturing model scores via logs</li>
-                                <li>Optimize data pipelines between AWS services and Snowflake</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-entry">
-                        <div class="timeline-point">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Data Engineer</h3>
-                            <h4>Nubika Cloud Solutions</h4>
-                            <span class="timeline-date">Nov 2022 - Mar 2024</span>
-                            <p>Building datasets, and dataflows on Salesforce Einstein Analytics. Building data warehouse and data lake using MuleSoft on Amazon S3 and Amazon Redshift services.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-entry">
-                        <div class="timeline-point">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Software Developer</h3>
-                            <h4>Sisytec Networks</h4>
-                            <span class="timeline-date">Sep 2021 - Nov 2022</span>
-                            <p>Development of APIs with JWT authentication</p>
-                            <p>Building user interfaces for web environments</p>
-                            <p>Working with PHP, Node.js, Angular, jQuery, and SQL</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="educacion">
-                <div class="section-header">
-                    <h2>EDUCATION</h2>
-                </div>
-                <div class="education-grid">
-                    <div class="education-card">
-                        <div class="education-content">
-                            <h3>Data Science Degree</h3>
-                            <h4>UNIVERSITAT OBERTA de CATALUNYA</h4>
-                            <span class="education-date">Feb 2022 - Sep 2026</span>
-                        </div>
-                    </div>
-                    
-                    <div class="education-card">
-                        <div class="education-content">
-                            <h3>Web Applications Development Associate Degree (CFGS)</h3>
-                            <h4>IES JOSE PLANES</h4>
-                            <span class="education-date">Sep 2019 - Dec 2021</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- <section id="certificaciones">
-                <div class="section-header">
-                    <h2>CERTIFICATION</h2>
-                </div>
-                <div class="certifications-grid">
-                    <div class="certification-card">
-                        <div class="certification-content">
-                            <h3>Microsoft Azure AI 900</h3>
-                        </div>
-                    </div>
-                    
-                    <div class="certification-card">
-                        <div class="certification-content">
-                            <h3>Databricks Generative AI Fundamentals</h3>
-                        </div>
-                    </div>
-                    
-                    <div class="certification-card">
-                        <div class="certification-content">
-                            <h3>Databricks Lakehouse Fundamentals</h3>
-                        </div>
-                    </div>
-                </div>
-            </section> -->
-
-        </main>
-
-        <footer>
-            <a href="https://www.flaticon.com/free-icons/minimal" title="minimal icons">Minimal icons created by rashadabdulov - Flaticon</a>
-        </footer>
+            <div class="terminal-title">javier@garcia:~</div>
+        </div>
+        <div class="terminal-content">
+            <div class="terminal-line">
+                <span class="prompt">javier@garcia:~$</span> <span class="command">whoami</span>
+            </div>
+            <div class="terminal-line output">
+                <pre class="ascii-art">
+     _             _                ____                _       
+    (_) __ ___   _(_) ___ _ __    / ___|__ _ _ __ ___ (_) __ _ 
+    | |/ _` \ \ / / |/ _ \ '__|  | |   / _` | '__/ __|| |/ _` |
+    | | (_| |\ V /| |  __/ |     | |__| (_| | | | (__ | | (_| |
+   _/ |\__,_| \_/ |_|\___|_|      \____\__,_|_|  \___||_|\__,_|
+  |__/                                                          
+                </pre>
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">javier@garcia:~$</span> <span class="command">data engineer with machine learning experience|</span>
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">javier@garcia:~$</span> <span class="command">cd projects</span>
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">javier@garcia:~/projects$</span> <span class="command">ls</span>
+            </div>
+            <div class="terminal-line output">
+                <span class="file">chest-ct-scan.py</span>
+                <span class="file">etl-platform.scala</span>
+                <span class="file">salesforce-analytics.sql</span>
+                <span class="file">api-jwt.js</span>
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">javier@garcia:~/projects$</span> <span class="command">cat about.txt</span>
+            </div>
+            <div class="terminal-line output">
+                Proactive data engineer specializing in ETL pipelines, data warehousing, and medical image computing. Python, Scala, AWS, PyTorch.
+            </div>
+            <div class="terminal-line">
+                <span class="prompt">javier@garcia:~/projects$</span> <span class="command">help</span>
+            </div>
+            <div class="terminal-line output">
+                Available commands:
+                - <a href="index.html" class="command-link">home</a>
+                - <a href="projects.html" class="command-link">projects</a>
+                - <a href="about.html" class="command-link">about</a>
+                - <a href="javascript:void(0);" class="command-link" id="contact-cmd">contact</a>
+            </div>
+            <div id="contact-info" class="terminal-line output hidden">
+                Email: contact@javiergarcia.dev
+                GitHub: <a href="https://github.com/" target="_blank" class="command-link">github.com/javiergarcia</a>
+            </div>
+            <div class="terminal-line input-line">
+                <span class="prompt">javier@garcia:~/projects$</span>
+                <span class="input" id="terminal-input" contenteditable="true"></span><span class="cursor"></span>
+            </div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('terminal-input');
+            const contactCmd = document.getElementById('contact-cmd');
+            const contactInfo = document.getElementById('contact-info');
+            
+            // Focus the input when the page loads
+            input.focus();
+            
+            // Make the cursor blink
+            setInterval(function() {
+                const cursor = document.querySelector('.cursor');
+                cursor.style.opacity = (cursor.style.opacity === '0') ? '1' : '0';
+            }, 500);
+            
+            // Handle input
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const command = input.textContent.trim().toLowerCase();
+                    
+                    // Handle navigation
+                    if (command === 'home') {
+                        window.location.href = 'index.html';
+                    } else if (command === 'projects') {
+                        window.location.href = 'projects.html';
+                    } else if (command === 'about') {
+                        window.location.href = 'about.html';
+                    } else if (command === 'contact') {
+                        contactInfo.classList.toggle('hidden');
+                    } else if (command === 'clear') {
+                        // Clear all output lines except for the input line
+                        const outputLines = document.querySelectorAll('.output');
+                        outputLines.forEach(line => line.classList.add('hidden'));
+                    } else if (command === 'help') {
+                        // Leave as is, the help text is already visible
+                    }
+                    
+                    // Clear the input
+                    input.textContent = '';
+                }
+            });
+            
+            // Focus the input when clicking anywhere on the terminal
+            document.querySelector('.terminal-content').addEventListener('click', function() {
+                input.focus();
+            });
+            
+            // Handle contact command link
+            contactCmd.addEventListener('click', function(e) {
+                e.preventDefault();
+                contactInfo.classList.toggle('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
