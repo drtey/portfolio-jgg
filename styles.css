@@ -1,214 +1,318 @@
 /* Core reset and typography */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-   }
-   
-   body {
-    font-family: 'JetBrains Mono', monospace;
-    line-height: 1.6;
-    color: #111;
-    background-color: #fff;
-   }
-   
-   /* Layout containers */
-   .container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-   }
-   
-   /* Header */
-   header {
-    padding: 2rem 0;
-    border-bottom: 1px solid #ddd;
-   }
-   
-   header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   }
-   
-   .logo a {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #000;
-    text-decoration: none;
-    border-bottom: none;
-   }
-   
-   nav ul {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-   }
-   
-   /* Main content */
-   main {
-    padding: 3rem 0;
-    min-height: calc(100vh - 160px);
-   }
-   
-   /* Typography */
-   h1 {
-    font-size: 2.2rem;
-    margin-bottom: 25px;
-    font-weight: 700;
-    line-height: 1.2;
-   }
-   
-   h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 1.5rem 0 0.75rem;
-    line-height: 1.3;
-   }
-   
-   p {
-    margin-bottom: 1rem;
-   }
-   
-   a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid #000;
-   }
-   
-   a:hover {
-    background-color: #f0f0f0;
-   }
-   
-   /* Profile section */
-   .profile {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 60px 0;
-   }
-   
-   .profile-content {
-    flex: 1;
-    padding-right: 40px;
-   }
-   
-   .profile-image {
-    width: 300px;
-    height: 300px;
-    border-radius: 3px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-   }
-   
-   .profile-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-   }
-   
-   .profile p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    line-height: 1.6;
-   }
-   
-   .profile-links {
-    margin-top: 30px;
-   }
-   
-   /* Highlight elements */
-   .highlight {
-    background: #000;
-    color: #fff;
-    padding: 2px 5px;
-    font-weight: 600;
-    border-radius: 2px;
-   }
-   
-   /* Buttons */
-   .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
-    border: 1px solid #000;
-    text-decoration: none;
-    font-size: 14px;
-    margin-right: 10px;
-    transition: all 0.2s ease;
-   }
-   
-   .button:hover {
-    background-color: #333;
-   }
-   
-   .button.secondary {
-    background-color: #fff;
-    color: #000;
-   }
-   
-   .button.secondary:hover {
-    background-color: #f5f5f5;
-   }
-   
-   /* Footer styling */
-   footer {
-    padding: 2rem 0;
-    border-top: 1px solid #eee;
-   }
-   
-   footer .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   }
-   
-   footer .links {
-    display: flex;
-    gap: 20px;
-   }
-   
-   footer .links a {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-bottom: none;
-   }
-   
-   footer .links i {
-    font-size: 18px;
-   }
-   
-   /* Responsive adjustments */
-   @media (max-width: 800px) {
-    .profile {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.6;
+  color: #111;
+  background-color: #fff;
+}
+
+/* Layout containers */
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  padding: 2rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+/* Main content */
+main {
+  padding: 3rem 0;
+  min-height: calc(100vh - 160px);
+}
+
+/* Typography */
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  line-height: 1.3;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+}
+
+a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Profile section */
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 0;
+}
+
+.profile-content {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.profile-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.profile-links {
+  margin-top: 30px;
+}
+
+/* Highlight elements */
+.highlight {
+  background: #000;
+  color: #fff;
+  padding: 2px 5px;
+  font-weight: 600;
+  border-radius: 2px;
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  background-color: #333;
+}
+
+.button.secondary {
+  background-color: #fff;
+  color: #000;
+}
+
+.button.secondary:hover {
+  background-color: #f5f5f5;
+}
+
+/* Footer styling */
+footer {
+  padding: 2rem 0;
+  border-top: 1px solid #eee;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .links {
+  display: flex;
+  gap: 20px;
+}
+
+footer .links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: none;
+}
+
+footer .links i {
+  font-size: 18px;
+}
+
+/* Code blocks */
+.code-block {
+  background-color: #0a0e14;
+  border-radius: 5px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.code-block pre {
+  padding: 15px;
+  overflow-x: auto;
+  color: #e6e6e6;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: #141820;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.copy-button {
+  background: transparent;
+  border: none;
+  color: #a0a0a0;
+  cursor: pointer;
+  padding: 2px 8px;
+  font-size: 12px;
+  border: 1px solid #2a2e35;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  background: #2a2e35;
+  color: #fff;
+}
+
+/* Syntax highlighting colors */
+.comment { color: #608b4e; }
+.keyword { color: #569cd6; }
+.string { color: #ce9178; }
+.number { color: #b5cea8; }
+.function { color: #dcdcaa; }
+.class { color: #4ec9b0; }
+.variable { color: #9cdcfe; }
+.operator { color: #d4d4d4; }
+.import { color: #c586c0; }
+.from { color: #c586c0; }
+.parameter { color: #9cdcfe; }
+
+/* Output display */
+.output-block {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  margin: 15px 0;
+  padding: 10px 15px;
+  border-left: 4px solid #2a2e35;
+}
+
+/* Image display */
+.image-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Section navigation */
+.section-nav {
+  margin: 30px 0;
+  padding: 15px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+}
+
+.section-nav ul {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.section-nav li {
+  margin: 8px 0;
+}
+
+.navigation {
+  margin-top: 20px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .profile {
       flex-direction: column-reverse;
-    }
-    
-    .profile-content {
+  }
+
+  .profile-content {
       padding-right: 0;
       margin-top: 30px;
-    }
-    
-    .profile-image {
+  }
+
+  .profile-image {
       width: 200px;
       height: 200px;
-    }
-    
-    header .container {
+  }
+
+  header .container {
       flex-direction: column;
       align-items: flex-start;
-    }
-    
-    nav {
+  }
+
+  nav {
       margin-top: 1rem;
       width: 100%;
-    }
-    
-    nav ul {
+  }
+
+  nav ul {
       width: 100%;
       justify-content: space-between;
-    }
-   }
+  }
+}

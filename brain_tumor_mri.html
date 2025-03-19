@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Brain Tumor MRI Classification</title>
+   <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+   <script>
+   function copyCode(id) {
+       const codeBlock = document.getElementById(id);
+       const textArea = document.createElement('textarea');
+       textArea.value = codeBlock.textContent;
+       document.body.appendChild(textArea);
+       textArea.select();
+       document.execCommand('copy');
+       document.body.removeChild(textArea);
+       
+       const button = document.querySelector(`button[data-target="${id}"]`);
+       const originalText = button.textContent;
+       button.textContent = 'Copied!';
+       setTimeout(() => {
+           button.textContent = originalText;
+       }, 2000);
+   }
+   </script>
+</head>
+<body>
+   <header>
+       <div class="container">
+           <div class="logo">
+               <a href="index.html">Projects</a>
+           </div>
+           <nav>
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="projects.html">Projects</a></li>
+                   <li><a href="assets/JavierGarcia_CV.pdf">CV</a></li>
+               </ul>
+           </nav>
+       </div>
+   </header>
+   
+   <main>
+       <div class="container">
+           <section class="project-content">
+               <h1>Brain Tumor MRI Classification</h1>
+               
+                <p> 2023 Deep Learning, Healthcare, Computer Vision </p>
+
+               <p>In this project, a convolutional neural network (CNN) is used to classify MRI images into categories indicating the presence or absence of a brain tumor. The primary goal is to accelerate the diagnosis process and assist in treatment planning by utilizing advanced deep learning techniques on MRI image data.</p>
+               
+               <div class="project-links">
+                <a href="https://github.com/drtey/Brain-Tumor-MRI" class="button" target="_blank">
+                    <i class="fab fa-github"></i> GitHub Repository
+                </a>
+            </div>
+
+               <div class="section-nav">
+                   <h3>Table of Contents</h3>
+                   <ul>
+                       <li><a href="#project-features">Project Features</a></li>
+                       <li><a href="#dataset">Dataset</a></li>
+                       <li><a href="#technologies">Technologies Used</a></li>
+                       <li><a href="#walkthrough">Code Walkthrough</a>
+                           <ul>
+                               <li><a href="#importing">1. Importing Libraries</a></li>
+                               <li><a href="#loading">2. Reading and Preprocessing Images</a></li>
+                               <li><a href="#arrays">3. Converting to Numeric Arrays</a></li>
+                               <li><a href="#visualizing">4. Visualizing MRI Images</a></li>
+                               <li><a href="#dataset-class">5. Creating Custom Dataset Class</a></li>
+                               <li><a href="#dataloader">6. Setting up DataLoader</a></li>
+                               <li><a href="#architecture">7. CNN Architecture Design</a></li>
+                               <li><a href="#training">8. Training the Model</a></li>
+                               <li><a href="#evaluation">9. Model Evaluation</a></li>
+                           </ul>
+                       </li>
+                       <li><a href="#results">Results and Performance</a></li>
+                       <li><a href="#conclusion">Conclusion</a></li>
+                   </ul>
+               </div>
+               
+               <h2 id="project-features">Project Features</h2>
+               <ul>
+                   <li><strong>Automated MRI Analysis</strong>: Automatically classifies MRI images into 'tumor' or 'no tumor' categories.</li>
+                   <li><strong>High Accuracy</strong>: Utilizes advanced CNN architectures to achieve high accuracy in classification.</li>
+                   <li><strong>Data Augmentation</strong>: Employs data augmentation techniques to improve model robustness and generalization.</li>
+                   <li><strong>Easy Integration</strong>: Can be easily integrated into existing medical image analysis workflows.</li>
+               </ul>
+               
+               <h2 id="dataset">Dataset</h2>
+               <p>The dataset includes MRI images categorized as 'with tumor' and 'without tumor'. These images are preprocessed to meet the model's input requirements. The dataset is divided into training, validation, and test sets to ensure accurate performance evaluation.</p>
+               
+               <h2 id="technologies">Technologies Used</h2>
+               <ul>
+                   <li><strong>Python</strong>: Primary programming language.</li>
+                   <li><strong>PyTorch</strong>: Deep learning framework used for building and training the model.</li>
+                   <li><strong>NumPy</strong>: For numerical operations.</li>
+                   <li><strong>Matplotlib</strong>: For data and result visualization.</li>
+                   <li><strong>OpenCV</strong>: For image processing.</li>
+               </ul>
+               
+               <h2 id="walkthrough">Walkthrough of the Code</h2>
+               
+               <h3 id="importing">1. Importing Libraries</h3>
+               <p>First, we import all necessary libraries for the project:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="importing-libraries" onclick="copyCode('importing-libraries')">Copy</button>
+                   </div>
+                   <pre id="importing-libraries"><span class="import">import</span> torch
+<span class="import">import</span> numpy <span class="keyword">as</span> np
+<span class="from">from</span> torch.utils.data <span class="import">import</span> Dataset, DataLoader, ConcatDataset
+<span class="import">import</span> random
+<span class="import">import</span> cv2
+<span class="import">import</span> sys
+<span class="import">import</span> glob
+<span class="import">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+<span class="from">from</span> sklearn.metrics <span class="import">import</span> confusion_matrix, accuracy_score</pre>
+               </div>
+               
+               <h3 id="loading">2. Reading and Preprocessing Images</h3>
+               <p>Next, we read and preprocess the MRI images from the dataset folder:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="reading-images" onclick="copyCode('reading-images')">Copy</button>
+                   </div>
+                   <pre id="reading-images"><span class="comment"># Loading and preprocessing tumor images</span>
+<span class="comment"># -resizing to 128x128 pixels to ensure consistency among all images</span>
+<span class="comment"># -color channels of the image are split into blue (b), green (g), and red (r)</span>
+<span class="comment"># -the channels are then merged back in the original order (since OpenCV loads images in BGR format)</span>
+tumor = []
+healthy = []
+
+<span class="keyword">for</span> f <span class="keyword">in</span> glob.glob("./data/brain_tumor_dataset/yes/*.jpg"):
+    img = cv2.imread(f)
+    img = cv2.resize(img, (128, 128))
+    b, g, r = cv2.split(img)
+    img = cv2.merge((b, g, r))
+    tumor.append(img)
+
+<span class="keyword">for</span> f <span class="keyword">in</span> glob.glob("./data/brain_tumor_dataset/no/*.jpg"):
+    img = cv2.imread(f)
+    img = cv2.resize(img, (128, 128))
+    b, g, r = cv2.split(img)
+    img = cv2.merge((b, g, r))
+    healthy.append(img)</pre>
+               </div>
+               
+               <h3 id="arrays">3. Converting to Numeric Arrays</h3>
+               <p>We convert the lists of images to NumPy arrays and concatenate them:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="list-to-array" onclick="copyCode('list-to-array')">Copy</button>
+                   </div>
+                   <pre id="list-to-array"><span class="comment">#list to array</span>
+healthy = np.array(healthy)
+tumor = np.array(tumor)
+
+<span class="comment">#concatenate datasets</span>
+All = np.concatenate((healthy, tumor))
+
+healthy.shape</pre>
+               </div>
+               
+               <div class="output-block">
+                   <p>(85, 128, 128, 3)</p>
+               </div>
+               
+               <h3 id="visualizing">4. Visualizing MRI Images</h3>
+               <p>Now we visualize random samples of MRI images from both categories:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="visualizing-images" onclick="copyCode('visualizing-images')">Copy</button>
+                   </div>
+                   <pre id="visualizing-images"><span class="comment">#Visualizing random samples of MRI images from two categories: healthy and tumor</span>
+<span class="comment">#For each sample is the random sample of healthy images, a random number between 0 and the length of the array</span>
+<span class="keyword">def</span> <span class="function">plot_random</span>(healthy, tumor, num=5):
+    healthy_imgs = healthy[np.random.choice(healthy.shape[0], num, replace=False)]
+    tumor_imgs = tumor[np.random.choice(tumor.shape[0], num, replace=False)]
+    
+    plt.figure(figsize=(16,9))
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):
+        plt.subplot(1, num, i+1)
+        plt.title('healthy')
+        plt.imshow(healthy_imgs[i])
+    
+    plt.figure(figsize=(16,9))
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):
+        plt.subplot(1, num, i+1)
+        plt.title('tumor')
+        plt.imshow(tumor_imgs[i])
+
+plot_random(healthy, tumor)</pre>
+               </div>
+
+               <div class="image-container">
+                   <img src="/assets/img/ht.png" alt="Visualization of MRI images: top row shows healthy brain scans, bottom row shows brain scans with tumors">
+                   <p class="image-caption">Sample MRI images from the dataset. Top row: healthy brain scans. Bottom row: brain scans with tumors.</p>
+               </div>
+               
+               <h3 id="dataset-class">5. Creating Custom Dataset Class</h3>
+               <p>We create a custom PyTorch Dataset class to handle our MRI data:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="create-dataset" onclick="copyCode('create-dataset')">Copy</button>
+                   </div>
+                   <pre id="create-dataset"><span class="keyword">class</span> <span class="class">MRI</span>(Dataset):
+    <span class="comment">"""An abstract class representing a Dataset.</span>
+    <span class="comment">    All other datasets should subclass it. All subclasses should override</span>
+    <span class="comment">    ``__len__``, that provides the size of the dataset, and ``__getitem__``,</span>
+    <span class="comment">    that supports integer indexing in range from 0 to len(self) exclusive.</span>
+    <span class="comment">    The base class raises a NotImplementedError, indicating that they must implement</span>
+    <span class="comment">    function on instances of the class or its subclasses.</span>
+    <span class="comment">"""</span>
+
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="parameter">self</span>):
+        <span class="comment"># Initialize lists</span>
+        <span class="parameter">self</span>.tumor = []
+        <span class="parameter">self</span>.healthy = []
+        
+        <span class="comment"># Load tumor images</span>
+        <span class="keyword">for</span> f <span class="keyword">in</span> glob.glob("./data/brain_tumor_dataset/yes/*.jpg"):
+            img = cv2.imread(f)
+            img = cv2.resize(img, (128, 128))
+            b, g, r = cv2.split(img)
+            img = cv2.merge((b, g, r))
+            <span class="parameter">self</span>.tumor.append(img)
+        
+        <span class="comment"># Load healthy images</span>
+        <span class="keyword">for</span> f <span class="keyword">in</span> glob.glob("./data/brain_tumor_dataset/no/*.jpg"):
+            img = cv2.imread(f)
+            img = cv2.resize(img, (128, 128))
+            b, g, r = cv2.split(img)
+            img = cv2.merge((b, g, r))
+            <span class="parameter">self</span>.healthy.append(img)
+        
+        <span class="comment"># Convert to numpy arrays</span>
+        <span class="parameter">self</span>.tumor = np.array(<span class="parameter">self</span>.tumor).astype(np.float32)
+        <span class="parameter">self</span>.healthy = np.array(<span class="parameter">self</span>.healthy).astype(np.float32)
+        
+        <span class="comment"># Labels</span>
+        <span class="parameter">self</span>.tumor_label = np.ones(<span class="parameter">self</span>.tumor.shape[0])
+        <span class="parameter">self</span>.healthy_label = np.zeros(<span class="parameter">self</span>.healthy.shape[0])
+        
+        <span class="comment"># Concatenate</span>
+        <span class="parameter">self</span>.images = np.concatenate((<span class="parameter">self</span>.tumor, <span class="parameter">self</span>.healthy), axis=0)
+        <span class="parameter">self</span>.labels = np.concatenate((<span class="parameter">self</span>.tumor_label, <span class="parameter">self</span>.healthy_label))
+        
+    <span class="comment"># Returns the number of images in the dataset by accessing the shape of the self.images array</span>
+    <span class="keyword">def</span> <span class="function">__len__</span>(<span class="parameter">self</span>):
+        <span class="keyword">return</span> <span class="parameter">self</span>.images.shape[0]
+    
+    <span class="comment"># Returns a dictionary with two keys - 'image' for the image at the specified index and 'label' for its corresponding label</span>
+    <span class="keyword">def</span> <span class="function">__getitem__</span>(<span class="parameter">self</span>, index):
+        sample = {'image': <span class="parameter">self</span>.images[index], 'label': <span class="parameter">self</span>.labels[index]}
+        <span class="keyword">return</span> sample
+    
+    <span class="comment"># Divides each pixel value by 255 to scale the image pixel values to the range [0, 1]</span>
+    <span class="keyword">def</span> <span class="function">normalize</span>(<span class="parameter">self</span>):
+        <span class="parameter">self</span>.images = <span class="parameter">self</span>.images/255.0</pre>
+               </div>
+               
+               <h3 id="dataloader">6. Setting up DataLoader</h3>
+               <p>We create and normalize our dataset, then set up a DataLoader:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="dataloader-setup" onclick="copyCode('dataloader-setup')">Copy</button>
+                   </div>
+                   <pre id="dataloader-setup">mri_dataset = MRI()
+mri_dataset.normalize()
+
+<span class="comment"># For our dataset</span>
+dataloader = DataLoader(mri_dataset, shuffle=True)
+<span class="keyword">for</span> i, sample <span class="keyword">in</span> enumerate(dataloader):
+    img = sample['image'][0]
+    plt.title(f"Tumor" <span class="keyword">if</span> sample['label'][0] <span class="keyword">else</span> "Healthy")
+    plt.imshow(img)
+    <span class="keyword">break</span></pre>
+               </div>
+               
+               <div class="image-container">
+                   <img src="/assets/img/sample.png" alt="Sample MRI image from dataloader">
+                   <p class="image-caption">Sample brain MRI scan loaded through the custom DataLoader.</p>
+               </div>
+               
+               <h3 id="architecture">7. CNN Architecture Design</h3>
+               <p>Now we define our CNN architecture for brain tumor classification:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="cnn-architecture" onclick="copyCode('cnn-architecture')">Copy</button>
+                   </div>
+                   <pre id="cnn-architecture"><span class="import">import</span> torch.nn <span class="keyword">as</span> nn
+<span class="import">import</span> torch.nn.functional <span class="keyword">as</span> F
+
+<span class="keyword">class</span> <span class="class">CNN</span>(nn.Module):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="parameter">self</span>):
+        <span class="keyword">super</span>(CNN, <span class="parameter">self</span>).__init__()
+        <span class="parameter">self</span>.conv1 = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3)
+        <span class="parameter">self</span>.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3)
+        <span class="parameter">self</span>.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3)
+        <span class="parameter">self</span>.pool = nn.MaxPool2d(kernel_size=2, stride=2)
+        <span class="parameter">self</span>.fc1 = nn.Linear(in_features=64*14*14, out_features=128)
+        <span class="parameter">self</span>.fc2 = nn.Linear(in_features=128, out_features=64)
+        <span class="parameter">self</span>.fc3 = nn.Linear(in_features=64, out_features=1)
+        
+    <span class="keyword">def</span> <span class="function">forward</span>(<span class="parameter">self</span>, x):
+        <span class="parameter">self</span>.cnn_model = x
+        x = <span class="parameter">self</span>.pool(F.relu(<span class="parameter">self</span>.conv1(x)))
+        x = <span class="parameter">self</span>.pool(F.relu(<span class="parameter">self</span>.conv2(x)))
+        x = <span class="parameter">self</span>.pool(F.relu(<span class="parameter">self</span>.conv3(x)))
+        x = x.view(-1, 64*14*14)
+        x = F.sigmoid(x)
+        <span class="keyword">return</span> x</pre>
+               </div>
+               
+               <h3 id="training">8. Training the Model</h3>
+               <p>We set up the training loop for our CNN model:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="training-model" onclick="copyCode('training-model')">Copy</button>
+                   </div>
+                   <pre id="training-model">lr = 0.0001
+EPOCH = 300
+device = torch.device('cuda' <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> 'cpu')
+model = CNN().to(device)
+optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+dataloader = DataLoader(mri_dataset, batch_size=32, shuffle=True)
+
+<span class="keyword">for</span> epoch <span class="keyword">in</span> range(1, EPOCH):
+    losses = []
+    <span class="keyword">for</span> i, data <span class="keyword">in</span> enumerate(dataloader):
+        optimizer.zero_grad()
+        imgs = data['image'].to(device)
+        labels = data['label'].to(device)
+        y_hat = model(imgs)
+        
+        error = nn.BCELoss()
+        y_hat = y_hat.squeeze()  <span class="comment"># removes dimensions of size 1</span>
+        labels = labels.float()
+        loss = error(y_hat, labels)
+        
+        loss.backward()
+        optimizer.step()
+        losses.append(loss.item())
+    
+    <span class="keyword">if</span> epoch % 5 == 0:
+        print(f"Train Epoch: {epoch} \tLoss: {np.mean(losses)}")</pre>
+               </div>
+               
+               <div class="output-block">
+                   <p>Train Epoch: 5  Loss: 0.698204</p>
+                   <p>Train Epoch: 10 Loss: 0.694091</p>
+                   <p>Train Epoch: 15 Loss: 0.686686</p>
+                   <p>...</p>
+                   <p>Train Epoch: 295 Loss: 0.016101</p>
+                   <p>Train Epoch: 300 Loss: 0.015598</p>
+               </div>
+               
+               <h3 id="evaluation">9. Model Evaluation</h3>
+               <p>After training, we evaluate the model's performance on the test dataset:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="evaluation-model" onclick="copyCode('evaluation-model')">Copy</button>
+                   </div>
+                   <pre id="evaluation-model">model.eval()
+dataloader = DataLoader(mri_dataset, batch_size=32, shuffle=False)
+outputs = []
+y_true = []
+
+<span class="keyword">with</span> torch.no_grad(): <span class="comment"># context manager is used to disable gradient calculation, reducing memory consumption and speed</span>
+    <span class="keyword">for</span> i, dataloader <span class="keyword">in</span> enumerate(dataloader):
+        imgs = dataloader['image'].to(device)
+        label = dataloader['label'].to(device)
+        
+        y_hat = model(imgs)
+        
+        outputs.append(y_hat.cpu().detach().numpy())
+        y_true.append(label.cpu().detach().numpy())
+
+outputs = np.concatenate(outputs, axis=0)
+y_true = np.concatenate(y_true, axis=0)</pre>
+               </div>
+               
+               <p>Now we calculate the accuracy score:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="accuracy-score" onclick="copyCode('accuracy-score')">Copy</button>
+                   </div>
+                   <pre id="accuracy-score">accuracy_score(y_true, threshold(outputs))</pre>
+               </div>
+               
+               <div class="output-block">
+                   <p>1.0</p>
+               </div>
+               
+               <p>Let's generate and visualize the confusion matrix to better understand the model's performance:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="confusion-matrix" onclick="copyCode('confusion-matrix')">Copy</button>
+                   </div>
+                   <pre id="confusion-matrix">cm = confusion_matrix(y_true, threshold(outputs))
+                    plt.figure(figsize=(10,7))
+
+                    sns.heatmap(cm, annot=True, fmt='g', ax=ax)
+                    <span class="comment"># labels, title and ticks</span>
+                    ax.set_xlabel('Predicted labels')
+                    ax.set_ylabel('True labels')
+                    ax.set_title('Confusion Matrix', fontsize=20)
+                    ax.xaxis.set_ticklabels(['Healthy', 'Tumor'])
+                    ax.yaxis.set_ticklabels(['Tumor', 'Healthy'])</pre>
+               </div>
+               
+               <div class="image-container">
+                   <img src="/assets/img/cf.png" alt="Confusion Matrix showing the classification results">
+                   <p class="image-caption">Confusion Matrix showing perfect classification of healthy and tumor MRI scans</p>
+               </div>
+               
+               <p>We can also visualize the model's predictions over time:</p>
+               
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>python</span>
+                       <button class="copy-button" data-target="plot-predictions" onclick="copyCode('plot-predictions')">Copy</button>
+                   </div>
+                   <pre id="plot-predictions">plt.figure(figsize=(16,9))
+plt.plot(outputs)
+plt.axvline(x=len(tumor), color='r', linestyle='--')
+plt.grid()</pre>
+               </div>
+               
+               <div class="image-container">
+                   <img src="/assets/img/prd.png" alt="Graph showing the model's predictions">
+                   <p class="image-caption">Prediction values for each MRI scan. Values close to 1 indicate tumor prediction, values close to 0 indicate healthy prediction.</p>
+               </div>
+               
+               <h2 id="conclusion">Conclusion</h2>
+               <p>This project successfully demonstrates the application of convolutional neural networks to medical image classification.</p>
+               
+               <p>Future improvements could include:</p>
+               <ul>
+                   <li>Expanding the dataset to include more diverse cases</li>
+                   <li>Implementing advanced architectures like ResNet or EfficientNet</li>
+                   <li>Adding segmentation capabilities to highlight tumor regions</li>
+                   <li>Deploying the model in a clinical setting for real-time assistance</li>
+               </ul>
+           </section>
+
+           <div class="navigation">
+               <a href="projects.html" class="button secondary">← Back to Projects</a>
+           </div>
+       </div>
+   </main>
+   
+   <footer>
+       <div class="container">
+           <div class="copyright">
+               <p>&copy; 2025 Javier García</p>
+           </div>
+           <div class="links">
+               <a href="mailto:javiggv99@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+               <a href="https://github.com/drtey" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+               <a href="https://linkedin.com/in/javi-gg" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+           </div>
+       </div>
+   </footer>
+</body>
+</html>
