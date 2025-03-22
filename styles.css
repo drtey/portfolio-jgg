@@ -10,12 +10,15 @@ body {
   line-height: 1.6;
   color: #111;
   background-color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Layout containers */
 .container {
-  width: 100%;
-  max-width: 900px;
+  width: 90%;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -49,15 +52,16 @@ nav ul {
 /* Main content */
 main {
   padding: 3rem 0;
-  min-height: calc(100vh - 160px);
+  flex-grow: 1;
 }
 
 /* Typography */
 h1 {
-  font-size: 2.2rem;
-  margin-bottom: 25px;
+  font-size: 2.6rem;
+  margin-bottom: 1.5rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 h2 {
@@ -68,7 +72,7 @@ h2 {
 }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 a {
@@ -85,21 +89,29 @@ a:hover {
 .profile {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin: 60px 0;
+  align-items: flex-start;
+  margin: 3rem 0 4rem;
+  gap: 3rem;
 }
 
 .profile-content {
   flex: 1;
-  padding-right: 40px;
+}
+
+.profile-content p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 42rem;
 }
 
 .profile-image {
-  width: 300px;
-  height: 300px;
-  border-radius: 3px;
+  width: 280px;
+  height: 280px;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transition: all 0.3s ease;
 }
 
 .profile-image img {
@@ -108,23 +120,16 @@ a:hover {
   object-fit: cover;
 }
 
-.profile p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.profile-links {
-  margin-top: 30px;
-}
-
 /* Highlight elements */
 .highlight {
   background: #000;
   color: #fff;
-  padding: 2px 5px;
+  padding: 3px 8px;
   font-weight: 600;
-  border-radius: 2px;
+  border-radius: 3px;
+  margin: 0 2px;
+  display: inline-block;
+  transition: all 0.2s ease;
 }
 
 /* Buttons */
@@ -153,10 +158,12 @@ a:hover {
   background-color: #f5f5f5;
 }
 
-/* Footer styling */
 footer {
   padding: 2rem 0;
   border-top: 1px solid #eee;
+  margin-top: auto;
+  width: 100%;
+  background-color: #fff;
 }
 
 footer .container {
@@ -279,6 +286,7 @@ footer .links i {
 
 .navigation {
   margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 h3 {
@@ -287,32 +295,48 @@ h3 {
 
 /* Responsive adjustments */
 @media (max-width: 800px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  
   .profile {
-      flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 2rem 0;
   }
-
+  
   .profile-content {
-      padding-right: 0;
-      margin-top: 30px;
+    padding-right: 0;
+    text-align: center;
   }
-
-  .profile-image {
-      width: 200px;
-      height: 200px;
+  
+  .profile-content p {
+    text-align: left;
   }
 
   header .container {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   nav {
-      margin-top: 1rem;
-      width: 100%;
+    margin-top: 1rem;
+    width: 100%;
   }
 
   nav ul {
-      width: 100%;
-      justify-content: space-between;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  /* Improved responsive footer */
+  footer .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  footer .links {
+    justify-content: center;
   }
 }
