@@ -1,78 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Javier Garcia | Data Engineer & Developer</title>
-   <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
-   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Javier Garcia. Data engineer and architect: FinOps, carbon footprint and telecom SIM data.">
+  <title>javier.garcia</title>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-   <header>
-       <div class="container">
-           <div class="logo">
-               <a href="index.html">javier.garcia</a>
-           </div>
-           <nav>
-               <ul>
-                   <li><a href="index.html">Home</a></li>
-                   <li><a href="projects.html">Projects</a></li>
-               </ul>
-           </nav>
-       </div>
-   </header>
-   
-   <main>
-      <div class="container">
-         <section class="intro">
-            <h1>Hi, I'm Javier Garcia!</h1>
-            
-            <div class="profile">
-               <div class="profile-content">
-                  <p>
-                     I'm a data engineer and software developer with a 
-                     passion for all things related to <span class="highlight">data</span> and <span class="highlight">software architectures</span>.
-                  </p>
-                  
-                  <p>
-                     My expertise includes ETL pipelines(Scala - Spark), data warehousing and data lakes. Since 2021, 
-                     my interests have progressively shifted from medical image computing to focus on <span class="highlight">cloud architectures
-                     </span> that combine cloud services and data processing, mostly <span class="highlight">AWS and GCP</span>.
-                  </p>
-                  
-                  <p>
-                     This site collects personal projects and
-                     references to topics that focus on data
-                     engineering, software and medical image computing. Whether you're a fellow developer
-                     or just someone curious about these
-                     subjects, I hope you'll find something of
-                     interest here.
-                  </p>
-               </div>
-               
-               <div class="profile-image">
-                  <img src="assets/img/unnamed.jpg" alt="Javier Garcia">
-               </div>
-            </div>
-         </section>
-      </div>
-   </main>
-   
-   <footer>
-       <div class="container">
-           <div class="copyright">
-               <p>&copy; 2025 Javier Garcia</p>
-           </div>
-           <div class="links">
-               <a href="mailto:javiggv99@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
-               <a href="https://github.com/drtey" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-               <a href="https://linkedin.com/in/javi-gg" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-           </div>
-       </div>
-   </footer>
+  <header>
+    <a class="logo" href="index.html">jgg<span>_</span></a>
+    <nav>
+      <a href="#projects">projects</a>
+      <a href="https://github.com/drtey">github</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>javier<span>.</span>garcia</h1>
+      <p>Data engineer and architect. I design data platforms and pipelines on AWS and GCP for FinOps, carbon footprint and telecom SIM data.</p>
+    </section>
+
+    <section id="projects">
+      <h2>projects</h2>
+
+      <details class="project">
+        <summary>
+          <span class="name"><i class="icon" aria-hidden="true"></i>clara</span>
+          <span class="desc">Invoicing over chat for Spanish freelancers.</span>
+        </summary>
+        <div class="body">
+          <p>Freelancers issue invoices over WhatsApp or Telegram, by text or voice. Clara logs expenses from a photo of the receipt, shows the quarter at a glance (Form 303 and 130) and exports the books to the accountant. Invoices are registered with Verifactu.</p>
+          <figure>
+            <img src="assets/img/clara.jpg" width="1600" height="881" alt="Clara landing page with a WhatsApp chat issuing an invoice" loading="lazy">
+            <figcaption>holaclara.es</figcaption>
+          </figure>
+          <p class="meta">2026</p>
+          <p class="links"><a href="https://holaclara.es/">site ↗</a> <span>source: private</span></p>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <span class="name"><i class="icon" aria-hidden="true"></i>hypothekas</span>
+          <span class="desc">Mortgage comparator for Spain.</span>
+        </summary>
+        <div class="body">
+          <p>Compares mortgages from the main Spanish banks. It works out the monthly payment with the current Euribor for fixed, variable and mixed rates, adds the purchase costs and taxes of each province, and shows the housing aid programs available. It is free and you don't need an account.</p>
+          <figure>
+            <img src="assets/img/hypothekas.jpg" width="1161" height="2000" alt="Hypothekas: mortgage calculator, best offers, purchase costs, housing aid and other banks" loading="lazy">
+            <figcaption>hypothekas.com</figcaption>
+          </figure>
+          <p class="meta">since 2025</p>
+          <p class="links"><a href="https://hypothekas.com/">site ↗</a></p>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <span class="name"><i class="icon" aria-hidden="true"></i>commandbench</span>
+          <span class="desc">Deck analyzer for Magic: The Gathering.</span>
+        </summary>
+        <div class="body">
+          <p>Magic: The Gathering is a card game where every player builds their own deck. You paste a deck list or a link, and CommandBench tells you how strong the deck is, what strategy it plays, which card combos it has and which cards you could swap. The suggestions come from what other players put in their public decks.</p>
+          <figure>
+            <img src="assets/img/commandbench.jpg" width="1280" height="800" alt="CommandBench home: a text box to paste a decklist" loading="lazy">
+            <figcaption>commandbench.com</figcaption>
+          </figure>
+          <p class="meta">2026</p>
+          <p class="links"><a href="https://commandbench.com">site ↗</a></p>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <span class="name"><i class="icon" aria-hidden="true"></i>chest-ct-scan</span>
+          <span class="desc">Lung disease classification on chest CT.</span>
+        </summary>
+        <div class="body">
+          <p>A fine-tuned ResNet-50 that sorts chest CT scans into four classes: adenocarcinoma, large cell carcinoma, squamous cell carcinoma and normal. The images get CLAHE histogram equalization and heavy augmentation, and training uses Adam with ReduceLROnPlateau.</p>
+          <figure>
+            <img src="assets/img/lung.png" width="1283" height="490" alt="CT slices from the four lung classes" loading="lazy">
+            <figcaption>samples from the four classes</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/img/loss.png" width="1189" height="390" alt="Training and validation loss and accuracy over epochs" loading="lazy">
+            <figcaption>loss and accuracy over epochs</figcaption>
+          </figure>
+          <p class="meta">2024 · python · pytorch · torchvision · opencv</p>
+          <p class="links"><a href="ct_scan.html">full write-up →</a> <a href="https://github.com/drtey/chest-CT-Scan">github ↗</a></p>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <span class="name"><i class="icon" aria-hidden="true"></i>brain-tumor-mri</span>
+          <span class="desc">Tumor detection in brain MRI.</span>
+        </summary>
+        <div class="body">
+          <p>A small LeNet-style CNN that tells MRI slices with a tumor from healthy ones. Images are resized to 128×128 and the network outputs the probability of a tumor.</p>
+          <figure>
+            <img src="assets/img/prd.png" width="1291" height="736" alt="Model predictions over the MRI test set" loading="lazy">
+            <figcaption>predictions on the test set</figcaption>
+          </figure>
+          <p class="meta">2023 · python · pytorch · opencv · numpy</p>
+          <p class="links"><a href="brain_tumor_mri.html">full write-up →</a> <a href="https://github.com/drtey/Brain-Tumor-MRI">github ↗</a></p>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <span class="name"><i class="icon" aria-hidden="true"></i>fraud-detection</span>
+          <span class="desc">Daily retraining of a fraud model.</span>
+        </summary>
+        <div class="body">
+          <p>Airflow DAG that retrains an XGBoost fraud detector every night on fresh transactions from Kafka, tracks runs in MLflow and serves the model from a separate inference container. Everything runs in Docker Compose.</p>
+<pre><code>with DAG('fraud_detection_training',
+         schedule_interval='0 3 * * *',
+         catchup=False) as dag:
+    validate_environment &gt;&gt; training_task &gt;&gt; cleanup_task</code></pre>
+          <p class="meta">2025 · airflow · xgboost · mlflow · kafka · docker</p>
+          <p class="links"><a href="https://github.com/drtey/fraud-detection">github ↗</a></p>
+        </div>
+      </details>
+
+      <details class="project">
+        <summary>
+          <span class="name"><i class="icon" aria-hidden="true"></i>nn_scratch</span>
+          <span class="desc">Neural networks with nothing but numpy.</span>
+        </summary>
+        <div class="body">
+          <p>Notebooks where I build a neural network step by step, starting with a single neuron and ending with backpropagation and gradient descent.</p>
+          <figure>
+            <img src="assets/img/nn/network.jpg" width="1200" height="917" alt="Hand-drawn two-layer network with ReLU and softmax" loading="lazy">
+            <figcaption>one of the hand-drawn diagrams from the notebooks</figcaption>
+          </figure>
+          <p class="meta">2024 · python · numpy · jupyter</p>
+          <p class="links"><a href="nn_scratch.html">full write-up →</a> <a href="https://github.com/drtey/nn_scratch">github ↗</a></p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 javier garcia garcia</span>
+    <a href="mailto:javiggv99@gmail.com">email</a>
+    <a href="https://github.com/drtey">github</a>
+  </footer>
 </body>
 </html>

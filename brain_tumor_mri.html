@@ -3,13 +3,13 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Brain Tumor MRI Classification</title>
+   <title>Brain tumor MRI | javier.garcia</title>
    <link rel="stylesheet" href="styles.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
+   <link rel="icon" type="image/png" href="favicon.ico">
    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+   <script src="script.js" defer></script>
    <script>
    function copyCode(id) {
        const codeBlock = document.getElementById(id);
@@ -31,83 +31,62 @@
 </head>
 <body>
    <header>
-       <div class="container">
-           <div class="logo">
-               <a href="index.html">Projects</a>
-           </div>
-           <nav>
-               <ul>
-                   <li><a href="index.html">Home</a></li>
-                   <li><a href="projects.html">Projects</a></li>
-               </ul>
-           </nav>
-       </div>
-   </header>
+    <a class="logo" href="index.html">jgg<span>_</span></a>
+    <nav>
+      <a href="index.html#projects">projects</a>
+      <a href="https://github.com/drtey">github</a>
+    </nav>
+  </header>
    
    <main>
        <div class="container">
            <section class="project-content">
-               <h1>Brain Tumor MRI Classification</h1>
+               <h1>Brain tumor MRI classification</h1>
                
-                <p> 2023 Deep Learning, Healthcare, Computer Vision </p>
+                <p>2023 · deep learning · healthcare · computer vision</p>
 
-               <p>In this project, a convolutional neural network (CNN) is used to classify MRI images into categories indicating the presence or absence of a brain tumor. The primary goal is to accelerate the diagnosis process and assist in treatment planning by utilizing advanced deep learning techniques on MRI image data.</p>
+               <p>A convolutional neural network (CNN) that looks at a brain MRI and says whether it shows a tumor. The idea is to speed up diagnosis and help plan treatment.</p>
                
                <div class="project-links">
                 <a href="https://github.com/drtey/Brain-Tumor-MRI" class="button" target="_blank">
-                    <i class="fab fa-github"></i> GitHub Repository
+                    GitHub Repository
                 </a>
             </div>
 
                <div class="section-nav">
-                   <h3>Table of Contents</h3>
+                   <h3>Contents</h3>
                    <ul>
-                       <li><a href="#project-features">Project Features</a></li>
+                       
                        <li><a href="#dataset">Dataset</a></li>
-                       <li><a href="#technologies">Technologies Used</a></li>
-                       <li><a href="#walkthrough">Code Walkthrough</a>
+                       <li><a href="#technologies">Libraries</a></li>
+                       <li><a href="#walkthrough">Code walkthrough</a>
                            <ul>
-                               <li><a href="#importing">1. Importing Libraries</a></li>
-                               <li><a href="#loading">2. Reading and Preprocessing Images</a></li>
-                               <li><a href="#arrays">3. Converting to Numeric Arrays</a></li>
-                               <li><a href="#visualizing">4. Visualizing MRI Images</a></li>
-                               <li><a href="#dataset-class">5. Creating Custom Dataset Class</a></li>
-                               <li><a href="#dataloader">6. Setting up DataLoader</a></li>
-                               <li><a href="#architecture">7. CNN Architecture Design</a></li>
-                               <li><a href="#training">8. Training the Model</a></li>
-                               <li><a href="#evaluation">9. Model Evaluation</a></li>
+                               <li><a href="#importing">1. Imports</a></li>
+                               <li><a href="#loading">2. Reading the images</a></li>
+                               <li><a href="#arrays">3. Arrays</a></li>
+                               <li><a href="#visualizing">4. A look at the data</a></li>
+                               <li><a href="#dataset-class">5. Dataset class</a></li>
+                               <li><a href="#dataloader">6. DataLoader</a></li>
+                               <li><a href="#architecture">7. The CNN</a></li>
+                               <li><a href="#training">8. Training</a></li>
+                               <li><a href="#evaluation">9. Evaluation</a></li>
                            </ul>
                        </li>
-                       <li><a href="#results">Results and Performance</a></li>
+                       
                        <li><a href="#conclusion">Conclusion</a></li>
                    </ul>
                </div>
-               
-               <h2 id="project-features">Project Features</h2>
-               <ul>
-                   <li><strong>Automated MRI Analysis</strong>: Automatically classifies MRI images into 'tumor' or 'no tumor' categories.</li>
-                   <li><strong>High Accuracy</strong>: Utilizes advanced CNN architectures to achieve high accuracy in classification.</li>
-                   <li><strong>Data Augmentation</strong>: Employs data augmentation techniques to improve model robustness and generalization.</li>
-                   <li><strong>Easy Integration</strong>: Can be easily integrated into existing medical image analysis workflows.</li>
-               </ul>
-               
+
                <h2 id="dataset">Dataset</h2>
-               <p>The dataset includes MRI images categorized as 'with tumor' and 'without tumor'. These images are preprocessed to meet the model's input requirements. The dataset is divided into training, validation, and test sets to ensure accurate performance evaluation.</p>
+               <p>Brain MRI images in two folders, with and without a tumor. I resize them to 128×128 and split them into training, validation and test sets.</p>
                
-               <h2 id="technologies">Technologies Used</h2>
-               <ul>
-                   <li><strong>Python</strong>: Primary programming language.</li>
-                   <li><strong>PyTorch</strong>: Deep learning framework used for building and training the model.</li>
-                   <li><strong>NumPy</strong>: For numerical operations.</li>
-                   <li><strong>Matplotlib</strong>: For data and result visualization.</li>
-                   <li><strong>OpenCV</strong>: For image processing.</li>
-               </ul>
+               <h2 id="technologies">Libraries</h2>
+               <p>Python with PyTorch for the model, NumPy for the arrays, OpenCV to read and resize the images and Matplotlib for the plots.</p>
                
-               <h2 id="walkthrough">Walkthrough of the Code</h2>
+               <h2 id="walkthrough">Code walkthrough</h2>
                
-               <h3 id="importing">1. Importing Libraries</h3>
-               <p>First, we import all necessary libraries for the project:</p>
-               
+               <h3 id="importing">1. Imports</h3>
+
                <div class="code-block">
                    <div class="code-header">
                        <span>python</span>
@@ -124,8 +103,8 @@
 <span class="from">from</span> sklearn.metrics <span class="import">import</span> confusion_matrix, accuracy_score</pre>
                </div>
                
-               <h3 id="loading">2. Reading and Preprocessing Images</h3>
-               <p>Next, we read and preprocess the MRI images from the dataset folder:</p>
+               <h3 id="loading">2. Reading the images</h3>
+               <p>Read every image from the dataset folder and resize it to 128×128:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -154,8 +133,8 @@ healthy = []
     healthy.append(img)</pre>
                </div>
                
-               <h3 id="arrays">3. Converting to Numeric Arrays</h3>
-               <p>We convert the lists of images to NumPy arrays and concatenate them:</p>
+               <h3 id="arrays">3. Arrays</h3>
+               <p>Turn the lists into NumPy arrays:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -176,8 +155,8 @@ healthy.shape</pre>
                    <p>(85, 128, 128, 3)</p>
                </div>
                
-               <h3 id="visualizing">4. Visualizing MRI Images</h3>
-               <p>Now we visualize random samples of MRI images from both categories:</p>
+               <h3 id="visualizing">4. A look at the data</h3>
+               <p>A few random images from each class:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -206,12 +185,12 @@ plot_random(healthy, tumor)</pre>
                </div>
 
                <div class="image-container">
-                   <img src="/assets/img/ht.png" alt="Visualization of MRI images: top row shows healthy brain scans, bottom row shows brain scans with tumors">
+                   <img loading="lazy" src="assets/img/ht.png" alt="Visualization of MRI images: top row shows healthy brain scans, bottom row shows brain scans with tumors">
                    <p class="image-caption">Sample MRI images from the dataset. Top row: healthy brain scans. Bottom row: brain scans with tumors.</p>
                </div>
                
-               <h3 id="dataset-class">5. Creating Custom Dataset Class</h3>
-               <p>We create a custom PyTorch Dataset class to handle our MRI data:</p>
+               <h3 id="dataset-class">5. Dataset class</h3>
+               <p>A PyTorch Dataset for the MRI data:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -274,8 +253,8 @@ plot_random(healthy, tumor)</pre>
         <span class="parameter">self</span>.images = <span class="parameter">self</span>.images/255.0</pre>
                </div>
                
-               <h3 id="dataloader">6. Setting up DataLoader</h3>
-               <p>We create and normalize our dataset, then set up a DataLoader:</p>
+               <h3 id="dataloader">6. DataLoader</h3>
+               <p>Normalize the dataset and wrap it in a DataLoader:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -295,13 +274,12 @@ dataloader = DataLoader(mri_dataset, shuffle=True)
                </div>
                
                <div class="image-container">
-                   <img src="/assets/img/sample.png" alt="Sample MRI image from dataloader">
-                   <p class="image-caption">Sample brain MRI scan loaded through the custom DataLoader.</p>
+                   <img loading="lazy" src="assets/img/sample.png" alt="Sample MRI image from dataloader">
+                   <p class="image-caption">One scan coming out of the DataLoader.</p>
                </div>
                
-               <h3 id="architecture">7. CNN Architecture Design</h3>
-               <p>Now we define our CNN architecture for brain tumor classification:</p>
-               
+               <h3 id="architecture">7. The CNN</h3>
+
                <div class="code-block">
                    <div class="code-header">
                        <span>python</span>
@@ -331,9 +309,8 @@ dataloader = DataLoader(mri_dataset, shuffle=True)
         <span class="keyword">return</span> x</pre>
                </div>
                
-               <h3 id="training">8. Training the Model</h3>
-               <p>We set up the training loop for our CNN model:</p>
-               
+               <h3 id="training">8. Training</h3>
+
                <div class="code-block">
                    <div class="code-header">
                        <span>python</span>
@@ -376,8 +353,8 @@ dataloader = DataLoader(mri_dataset, batch_size=32, shuffle=True)
                    <p>Train Epoch: 300 Loss: 0.015598</p>
                </div>
                
-               <h3 id="evaluation">9. Model Evaluation</h3>
-               <p>After training, we evaluate the model's performance on the test dataset:</p>
+               <h3 id="evaluation">9. Evaluation</h3>
+               <p>Run the trained model over the test set:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -403,7 +380,7 @@ outputs = np.concatenate(outputs, axis=0)
 y_true = np.concatenate(y_true, axis=0)</pre>
                </div>
                
-               <p>Now we calculate the accuracy score:</p>
+               <p>Accuracy:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -417,7 +394,7 @@ y_true = np.concatenate(y_true, axis=0)</pre>
                    <p>1.0</p>
                </div>
                
-               <p>Let's generate and visualize the confusion matrix to better understand the model's performance:</p>
+               <p>Confusion matrix:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -437,11 +414,11 @@ y_true = np.concatenate(y_true, axis=0)</pre>
                </div>
                
                <div class="image-container">
-                   <img src="/assets/img/cf.png" alt="Confusion Matrix showing the classification results">
-                   <p class="image-caption">Confusion Matrix showing perfect classification of healthy and tumor MRI scans</p>
+                   <img loading="lazy" src="assets/img/cf.png" alt="Confusion Matrix showing the classification results">
+                   <p class="image-caption">No scan is misclassified.</p>
                </div>
                
-               <p>We can also visualize the model's predictions over time:</p>
+               <p>The model's output for each scan:</p>
                
                <div class="code-block">
                    <div class="code-header">
@@ -455,39 +432,32 @@ plt.grid()</pre>
                </div>
                
                <div class="image-container">
-                   <img src="/assets/img/prd.png" alt="Graph showing the model's predictions">
-                   <p class="image-caption">Prediction values for each MRI scan. Values close to 1 indicate tumor prediction, values close to 0 indicate healthy prediction.</p>
+                   <img loading="lazy" src="assets/img/prd.png" alt="Graph showing the model's predictions">
+                   <p class="image-caption">Close to 1 means tumor, close to 0 means healthy.</p>
                </div>
                
                <h2 id="conclusion">Conclusion</h2>
-               <p>This project successfully demonstrates the application of convolutional neural networks to medical image classification.</p>
+               <p>The CNN got every test scan right. The dataset is small, though, so I wouldn't read much into that 1.0 until it is tested on more and more varied scans.</p>
                
-               <p>Future improvements could include:</p>
+               <p>What I would try next:</p>
                <ul>
-                   <li>Expanding the dataset to include more diverse cases</li>
-                   <li>Implementing advanced architectures like ResNet or EfficientNet</li>
-                   <li>Adding segmentation capabilities to highlight tumor regions</li>
-                   <li>Deploying the model in a clinical setting for real-time assistance</li>
+                   <li>more varied cases in the dataset</li>
+                   <li>bigger architectures such as ResNet or EfficientNet</li>
+                   <li>segmentation to outline the tumor</li>
+                   <li>a test in a real clinical setting</li>
                </ul>
            </section>
 
            <div class="navigation">
-               <a href="projects.html" class="button secondary">← Back to Projects</a>
+               <a href="index.html#projects" class="button secondary">← back to projects</a>
            </div>
        </div>
    </main>
    
    <footer>
-       <div class="container">
-           <div class="copyright">
-               <p>&copy; 2025 Javier Garcia</p>
-           </div>
-           <div class="links">
-               <a href="mailto:javiggv99@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
-               <a href="https://github.com/drtey" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-               <a href="https://linkedin.com/in/javi-gg" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-           </div>
-       </div>
-   </footer>
+    <span>© 2026 javier garcia garcia</span>
+    <a href="mailto:javiggv99@gmail.com">email</a>
+    <a href="https://github.com/drtey">github</a>
+  </footer>
 </body>
 </html>

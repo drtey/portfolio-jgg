@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Neural networks from scratch | javier.garcia</title>
+   <link rel="stylesheet" href="styles.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="icon" type="image/png" href="favicon.ico">
+   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+   <script src="script.js" defer></script>
+   <script>
+   function copyCode(id) {
+       const codeBlock = document.getElementById(id);
+       const textArea = document.createElement('textarea');
+       textArea.value = codeBlock.textContent;
+       document.body.appendChild(textArea);
+       textArea.select();
+       document.execCommand('copy');
+       document.body.removeChild(textArea);
+       
+       const button = document.querySelector(`button[data-target="${id}"]`);
+       const originalText = button.textContent;
+       button.textContent = 'Copied!';
+       setTimeout(() => {
+           button.textContent = originalText;
+       }, 2000);
+   }
+   </script>
+</head>
+<body>
+   <header>
+    <a class="logo" href="index.html">jgg<span>_</span></a>
+    <nav>
+      <a href="index.html#projects">projects</a>
+      <a href="https://github.com/drtey">github</a>
+    </nav>
+  </header>
+   
+   <main>
+       <div class="container">
+           <section id="project-header">
+               <h1>Neural networks from scratch</h1>
+
+               <div class="project-summary">
+                   <div class="project-meta">
+                       <p>2024 · python · numpy · jupyter</p>
+                   </div>
+
+                   <div class="project-description">
+                       <p>Four notebooks where I build a neural network with Python and NumPy and no deep learning framework. It starts with a single neuron and ends with backpropagation. Each step has a hand-drawn diagram of what the code computes.</p>
+                   </div>
+
+                   <div class="project-links">
+                    <a href="https://github.com/drtey/nn_scratch" class="button" target="_blank">GitHub Repository</a>
+                   </div>
+               </div>
+
+               <div class="section-nav">
+                   <h3>Contents</h3>
+                   <ul>
+                       <li><a href="#neurons">1. Neurons and layers</a></li>
+                       <li><a href="#activations">2. Activation functions</a></li>
+                       <li><a href="#loss">3. Loss and gradients</a></li>
+                       <li><a href="#backprop">4. Backpropagation</a></li>
+                   </ul>
+               </div>
+           </section>
+
+           <section id="neurons">
+               <h2>1. Neurons and layers</h2>
+               <p>A neuron multiplies each input by a weight, adds the results and adds a bias. With three inputs:</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/neuron-3.jpg" width="1200" height="514" alt="Hand-drawn neuron with three inputs, three weights and a bias">
+                   <p>One neuron, three inputs.</p>
+               </div>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Neuron with 3 inputs</span>
+                       <button class="copy-button" data-target="code-1" onclick="copyCode('code-1')">Copy</button>
+                   </div>
+<pre id="code-1"><code class="python">inputs = [7, 3, 5]
+weights = [0.5, -0.6, 0.8]
+bias = 1.2
+
+<span class="comment"># Calculating the output of the neuron</span>
+output = (inputs[0] * weights[0] + inputs[1] * weights[1] + inputs[2] * weights[2] + bias)
+print(f"Output of neuron with 3 inputs: {output}")</code></pre>
+               </div>
+               <div class="output-block"><p>Output of neuron with 3 inputs: 6.9</p></div>
+               <p>A layer is several neurons reading the same inputs, each with its own weights and bias. Three neurons over four inputs give three outputs.</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/layer.jpg" width="1200" height="542" alt="Hand-drawn layer of three neurons connected to four inputs">
+                   <p>Every input goes to every neuron.</p>
+               </div>
+               <p>With NumPy the whole layer is one dot product plus the biases:</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/layer-numpy.jpg" width="1200" height="677" alt="Hand-drawn np.dot of the weight matrix and the inputs">
+                   <p>Each row of the weight matrix is one neuron.</p>
+               </div>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Layer with NumPy</span>
+                       <button class="copy-button" data-target="code-2" onclick="copyCode('code-2')">Copy</button>
+                   </div>
+<pre id="code-2"><code class="python">inputs = [1.5, -2.0, 3.3, 0.7]
+
+<span class="comment"># Weights for each neuron</span>
+weights = [
+    [0.4, -0.2, 0.5, 1.2],
+    [0.6, -0.8, 0.3, -0.7],
+    [-0.3, 0.9, -0.4, 0.5]
+]
+
+<span class="comment"># Biases for each neuron</span>
+biases = [1.0, -1.5, 0.8]
+
+<span class="comment"># Calculate the layer outputs</span>
+layer_outputs = np.dot(weights, inputs) + biases
+
+print(layer_outputs)</code></pre>
+               </div>
+               <div class="output-block"><p>[ 4.49  1.5  -2.42]</p></div>
+               <p>To run several samples at once, the inputs turn into a matrix with one row per sample. The weights then have to be transposed so the shapes match, and each row of the result is the layer output for one sample.</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/batch-transpose.jpg" width="1200" height="611" alt="Hand-drawn batch of inputs multiplied by the transposed weights">
+                   <p>A batch of three samples through the layer.</p>
+               </div>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Batch of inputs</span>
+                       <button class="copy-button" data-target="code-3" onclick="copyCode('code-3')">Copy</button>
+                   </div>
+<pre id="code-3"><code class="python">inputs = [
+    [2.5, -1.0, 4.0, 1.5], 
+    [3.0, 0.5, -2.5, 3.5], 
+    [-2.0, 3.5, 2.0, -1.5]
+]
+
+<span class="comment"># Weights for each neuron</span>
+weights = [
+    [0.4, -0.3, 0.6, 1.2],
+    [0.7, -1.0, 0.3, -0.8],
+    [-0.5, 0.6, -0.2, 1.0]
+]
+
+<span class="comment"># Biases for each neuron</span>
+biases = [1.5, -0.5, 2.5]
+
+inputs_array = np.array(inputs)
+weights_array = np.array(weights)
+biases_array = np.array(biases)
+
+outputs = np.dot(inputs_array, weights_array.T) + biases_array
+print(outputs)</code></pre>
+               </div>
+               <div class="output-block"><p>[[ 7.    2.25  1.35]</p><p> [ 5.25 -2.45  5.3 ]</p><p> [-0.95 -3.6   3.7 ]]</p></div>
+               <p>A second layer takes the first layer's output as its input:</p>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Two layers</span>
+                       <button class="copy-button" data-target="code-4" onclick="copyCode('code-4')">Copy</button>
+                   </div>
+<pre id="code-4"><code class="python"><span class="comment"># Calculate the output of the first layer</span>
+layer1_outputs = np.dot(inputs_array, weights_array.T) + biases_array
+
+<span class="comment"># Calculate the output of the second layer</span>
+layer2_outputs = np.dot(layer1_outputs, weights2_array.T) + biases2_array
+
+print(layer2_outputs)</code></pre>
+               </div>
+               <div class="output-block"><p>[[ 0.894  -1.7    -2.313 ]</p><p> [ 2.483  -2.1305 -4.4665]</p><p> [ 1.164   0.822  -3.191 ]]</p></div>
+           </section>
+
+           <section id="activations">
+               <h2>2. Activation functions</h2>
+               <p>Without an activation function, stacking layers still gives you a linear model. The notebook goes through sigmoid, tanh, ReLU, Leaky ReLU and softmax, with the formula of each one and where it falls short. Sigmoid and tanh flatten out for large inputs and the gradient vanishes there; ReLU avoids that but can leave neurons stuck at zero, which is what Leaky ReLU fixes.</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/activations.jpg" width="1200" height="711" alt="Plots of sigmoid, tanh, ReLU and Leaky ReLU">
+                   <p>Sigmoid, tanh, ReLU and Leaky ReLU.</p>
+               </div>
+               <p>Then they go into a network: two inputs, a hidden layer of three neurons with ReLU, and an output layer of three neurons with softmax, so the outputs are probabilities that add up to 1.</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/network.jpg" width="1200" height="917" alt="Hand-drawn two-layer network with ReLU and softmax">
+                   <p>ReLU in the hidden layer, softmax at the output.</p>
+               </div>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/forward.jpg" width="1200" height="653" alt="Hand-drawn forward pass through the two layers">
+                   <p>The forward pass in order.</p>
+               </div>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Forward pass</span>
+                       <button class="copy-button" data-target="code-5" onclick="copyCode('code-5')">Copy</button>
+                   </div>
+<pre id="code-5"><code class="python"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="keyword">def</span> <span class="function">relu</span>(x):
+    <span class="keyword">return</span> np.maximum(0, x)
+
+<span class="keyword">def</span> <span class="function">softmax</span>(z):
+    exp_values = np.exp(z - np.max(z))  
+    sum_exp_values = np.sum(exp_values)
+    probabilities = exp_values / sum_exp_values
+    <span class="keyword">return</span> probabilities
+
+<span class="keyword">class</span> <span class="function">NeuralNetworkWithSoftmax</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self):
+        self.weights_hidden = np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]]) 
+        self.bias_hidden = np.array([0.1, -0.1, 0.05])                      
+        self.weights_output = np.array([[0.7, 0.8, 0.9], [-0.1, -0.2, -0.3], [0.3, 0.2, 0.1]])
+        self.bias_output = np.array([0.1, -0.1, 0.05])                       
+
+    <span class="keyword">def</span> <span class="function">forward</span>(self, input_data):
+        <span class="comment"># Forward pass in the hidden layer</span>
+        hidden_layer_input = np.dot(self.weights_hidden, input_data) + self.bias_hidden
+        hidden_layer_output = relu(hidden_layer_input)  <span class="comment"># Apply ReLU function in the hidden layer</span>
+        
+        <span class="comment"># Forward pass in the output layer</span>
+        output_layer_input = np.dot(self.weights_output, hidden_layer_output) + self.bias_output
+        output = softmax(output_layer_input)  <span class="comment"># Apply Softmax function in the output layer to get probabilities</span>
+        
+        <span class="keyword">return</span> output
+
+network = NeuralNetworkWithSoftmax()
+
+input_data = np.array([2.0, 3.0])
+
+output = network.forward(input_data)
+
+print("Output probabilities (Softmax):", output)</code></pre>
+               </div>
+               <div class="output-block"><p>Output probabilities (Softmax): [0.97384346 0.00231927 0.02383728]</p></div>
+           </section>
+
+           <section id="loss">
+               <h2>3. Loss and gradients</h2>
+               <p>Training needs a number for how wrong the network is. Mean squared error averages the squared differences between prediction and label, and cross-entropy is the usual choice for classification.</p>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Mean squared error</span>
+                       <button class="copy-button" data-target="code-6" onclick="copyCode('code-6')">Copy</button>
+                   </div>
+<pre id="code-6"><code class="python"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="keyword">def</span> <span class="function">mse</span>(y_pred, y_real):
+    <span class="keyword">return</span> np.mean((y_pred - y_real) ** 2)
+
+y_pred = np.array([0.8, 0.6, 0.2])
+y_real = np.array([1.0, 0.0, 0.0])
+
+error = mse(y_pred, y_real)
+print("Mean Squared Error (MSE):", error)</code></pre>
+               </div>
+               <div class="output-block"><p>Mean Squared Error (MSE): 0.14666666666666664</p></div>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Cross-entropy</span>
+                       <button class="copy-button" data-target="code-7" onclick="copyCode('code-7')">Copy</button>
+                   </div>
+<pre id="code-7"><code class="python"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+<span class="comment"># Define the cross-entropy function</span>
+<span class="keyword">def</span> <span class="function">cross_entropy</span>(y_pred, y_real):
+    epsilon = 1e-15  <span class="comment"># Avoid log(0)</span>
+    y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
+    <span class="keyword">return</span> -np.sum(y_real * np.log(y_pred))
+
+<span class="comment"># Example usage</span>
+y_pred = np.array([0.7, 0.2, 0.1])
+y_real = np.array([1, 0, 0])
+
+error = cross_entropy(y_pred, y_real)
+print("Cross-Entropy:", error)</code></pre>
+               </div>
+               <div class="output-block"><p>Cross-Entropy: 0.35667494393873245</p></div>
+               <p>What training actually uses is the gradient of the loss. With softmax at the output, the gradient of cross-entropy is just the prediction minus the label.</p>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Gradients</span>
+                       <button class="copy-button" data-target="code-8" onclick="copyCode('code-8')">Copy</button>
+                   </div>
+<pre id="code-8"><code class="python"><span class="comment"># Gradient of MSE</span>
+<span class="keyword">def</span> <span class="function">gradient_mse</span>(y_pred, y_real):
+    <span class="keyword">return</span> 2 * (y_pred - y_real) / len(y_real)
+
+<span class="comment"># Gradient of Cross-Entropy (when using Softmax)</span>
+<span class="keyword">def</span> <span class="function">gradient_cross_entropy</span>(y_pred, y_real):
+    <span class="keyword">return</span> y_pred - y_real
+
+<span class="comment"># Example usage</span>
+grad_mse = gradient_mse(y_pred, y_real)
+grad_cross_entropy = gradient_cross_entropy(y_pred, y_real)
+
+print("Gradient of MSE:", grad_mse)
+print("Gradient of Cross-Entropy:", grad_cross_entropy)</code></pre>
+               </div>
+               <div class="output-block"><p>Gradient of MSE: [-0.2         0.13333333  0.06666667]</p><p>Gradient of Cross-Entropy: [-0.3  0.2  0.1]</p></div>
+           </section>
+
+           <section id="backprop">
+               <h2>4. Backpropagation</h2>
+               <p>Gradient descent moves every weight a small step against its gradient: new value = current value - learning rate × gradient. Backpropagation is how you get those gradients, applying the chain rule from the loss back to each weight.</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/chain-rule.jpg" width="1200" height="866" alt="Hand-drawn notes on the chain rule">
+                   <p>The chain rule.</p>
+               </div>
+               <p>I worked it out by hand first for a single neuron with three inputs, ReLU and a squared error:</p>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/backprop.jpg" width="1200" height="818" alt="Hand-drawn backpropagation through one neuron">
+                   <p>Forward pass, loss and the derivatives needed.</p>
+               </div>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/backprop-neuron.jpg" width="1200" height="745" alt="Hand-drawn derivative of the loss with respect to w0">
+                   <p>The derivative of the loss with respect to w0.</p>
+               </div>
+
+               <div class="image-container">
+                   <img loading="lazy" src="assets/img/nn/gradient-step.jpg" width="1200" height="907" alt="Hand-drawn gradient descent step with numbers">
+                   <p>One update by hand. The new loss, 33.87, is the same one the code prints at iteration 2.</p>
+               </div>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Single neuron, 200 iterations</span>
+                       <button class="copy-button" data-target="code-9" onclick="copyCode('code-9')">Copy</button>
+                   </div>
+<pre id="code-9"><code class="python"><span class="keyword">import</span> numpy <span class="keyword">as</span> np
+
+weights = np.array([-3.0, -1.0, 2.0])
+bias = 1.0
+inputs = np.array([1.0, -2.0, 3.0])
+target_output = 0.0
+learning_rate = 0.001
+
+<span class="keyword">def</span> <span class="function">relu</span>(x):
+    <span class="keyword">return</span> np.maximum(0, x)
+
+<span class="keyword">def</span> <span class="function">relu_derivative</span>(x):
+    <span class="keyword">return</span> np.where(x &gt; 0, 1.0, 0.0)
+
+<span class="keyword">for</span> iteration <span class="keyword">in</span> range(200):
+    <span class="comment"># Forward pass</span>
+    linear_output = np.dot(weights, inputs) + bias
+    output = relu(linear_output)
+    loss = (output - target_output) ** 2
+
+    <span class="comment"># Backward pass</span>
+    dloss_doutput = 2 * (output - target_output)
+    doutput_dlinear = relu_derivative(linear_output)
+    dlinear_dweights = inputs
+    dlinear_dbias = 1.0
+
+    dloss_dlinear = dloss_doutput * doutput_dlinear
+    dloss_dweights = dloss_dlinear * dlinear_dweights
+    dloss_dbias = dloss_dlinear * dlinear_dbias
+
+    <span class="comment"># Update weights and bias</span>
+    weights -= learning_rate * dloss_dweights
+    bias -= learning_rate * dloss_dbias
+
+    print(f"Iteration {iteration + 1}, Loss: {loss}")
+
+print("Final weights:", weights)
+print("Final bias:", bias)</code></pre>
+               </div>
+               <div class="output-block"><p>Iteration 1, Loss: 36.0</p><p>Iteration 2, Loss: 33.872399999999985</p><p>...</p><p>Iteration 100, Loss: 0.08651788326054576</p><p>...</p><p>Iteration 200, Loss: 0.00019563778572677352</p></div>
+               <p>The last notebook does the same for the two-layer network. The output error is the cross-entropy gradient, it goes back through the output weights and the ReLU derivative into the hidden layer, and then every weight and bias takes one gradient descent step:</p>
+
+               <div class="code-block">
+                   <div class="code-header">
+                       <span>Backward pass</span>
+                       <button class="copy-button" data-target="code-10" onclick="copyCode('code-10')">Copy</button>
+                   </div>
+<pre id="code-10"><code class="python">    <span class="keyword">def</span> <span class="function">backward</span>(self, input_data, y_pred, y_real):
+        <span class="comment"># Error in the output layer</span>
+        output_error = y_pred - y_real  <span class="comment"># Cross-entropy gradient with Softmax</span>
+        
+        <span class="comment"># Gradients of weights and biases in the output layer</span>
+        grad_weights_output = np.outer(output_error, self.hidden_layer_output)
+        grad_bias_output = output_error
+        
+        <span class="comment"># Error in the hidden layer</span>
+        hidden_error = np.dot(self.weights_output.T, output_error) * relu_derivative(self.hidden_layer_input)
+        grad_weights_hidden = np.outer(hidden_error, input_data)
+        grad_bias_hidden = hidden_error
+        
+        <span class="comment"># Adjust weights and biases using gradient descent</span>
+        self.weights_output -= self.learning_rate * grad_weights_output
+        self.bias_output -= self.learning_rate * grad_bias_output
+        self.weights_hidden -= self.learning_rate * grad_weights_hidden
+        self.bias_hidden -= self.learning_rate * grad_bias_hidden</code></pre>
+               </div>
+           </section>
+
+           <div class="navigation">
+                <a href="index.html#projects" class="button secondary">← back to projects</a>
+            </div>
+       </div>
+   </main>
+   
+   <footer>
+    <span>© 2026 javier garcia garcia</span>
+    <a href="mailto:javiggv99@gmail.com">email</a>
+    <a href="https://github.com/drtey">github</a>
+  </footer>
+</body>
+</html>
