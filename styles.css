@@ -6,13 +6,11 @@
   --code-bg: #f6f6f6;
   --accent: orange;
   --ease: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: light;
   color: var(--fg);
   background: var(--bg);
   font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
   font-size: 16px;
-}
-@media (prefers-color-scheme: dark) {
-  :root { --fg: #e6e6e6; --bg: #0d0d0d; --muted: #8a8a8a; --line: #2a2a2a; --code-bg: #161616; }
 }
 * { box-sizing: border-box; }
 body { max-width: 1040px; margin: 0 auto; padding: 0 40px; background: var(--bg); line-height: 1.6; }
